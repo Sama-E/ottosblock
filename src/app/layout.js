@@ -1,7 +1,10 @@
-import Footer from '../components/Nav/Footer/Footer'
-import Navbar from '../components/Nav/Navbar/Navbar'
 import './globals.css'
 import { Open_Sans } from 'next/font/google'
+import ThemeProvider from '@/providers/ThemeProvider'
+import { ThemeContextProvider } from '@/context/ThemeContext'
+import Footer from '../components/Nav/Footer/Footer'
+import Navbar from '../components/Nav/Navbar/Navbar'
+
 
 const open_sans = Open_Sans({ subsets: ['latin'] })
 
@@ -14,13 +17,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={open_sans.className}>
-        <div className="container">
-          <div className="wrapper">
-            <Navbar />
-              {children}
-            <Footer />
-          </div>
-        </div>
+        <ThemeContextProvider>
+          <ThemeProvider>
+            <div className="container">
+              <div className="wrapper">
+                <Navbar />
+                  {children}
+                <Footer />
+              </div>
+            </div>
+          </ThemeProvider>
+        </ThemeContextProvider>
       </body>
     </html>
   )

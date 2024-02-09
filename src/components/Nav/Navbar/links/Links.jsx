@@ -4,6 +4,7 @@ import { useState } from "react";
 import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 import Image from "next/image";
+import ThemeToggle from "@/components/Theme/ThemeToggle";
 
 const links = [
 
@@ -30,6 +31,7 @@ const Links = () => {
   return (
     <div className={styles.container}>
       <div className={styles.links}>
+      <ThemeToggle />
         {links.map((link) => (
           <NavLink item={link} key={link.title} />
         ))}
@@ -43,6 +45,7 @@ const Links = () => {
         ) : (
           <NavLink item={{ title: "Login", path: "/login" }} />
         )} */}
+        
       </div>
       <Image
         className={styles.menuButton}
@@ -56,7 +59,8 @@ const Links = () => {
         <div className={styles.mobileLinks}>
           {links.map((link) => (
             <NavLink item={link} key={link.title} />
-          ))}
+            ))}
+            <ThemeToggle />
         </div>
       )}
     </div>
