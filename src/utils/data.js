@@ -1,11 +1,7 @@
-import styles from "./cardList.module.css";
-import Image from "next/image";
-import Card from "../Card/Card";
-import Pagination from "@/components/Pagination/Pagination";
-
 const posts = [
   {
     id: 1,
+    userId: 1,
     img: "/culture.png",
     createdAt: "11/26/2023",
     catSlug: "Lifestyle",
@@ -15,6 +11,7 @@ const posts = [
   },
   {
     id: 2,
+    userId: 1,
     img: "/culture.png",
     createdAt: "11/26/2023",
     catSlug: "Blockchain",
@@ -24,6 +21,7 @@ const posts = [
   },
   {
     id: 3,
+    userId: 2,
     img: "/culture.png",
     createdAt: "11/26/2023",
     catSlug: "Security",
@@ -33,6 +31,7 @@ const posts = [
   },
   {
     id: 4,
+    userId: 2,
     img: "/culture.png",
     createdAt: "11/26/2023",
     catSlug: "Tech",
@@ -40,23 +39,21 @@ const posts = [
     title: "New Tech: AI",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae consequatur sequi iure quas dolores! Iste maiores voluptates architecto, reprehenderit tempora labore eveniet modi eligendi quidem suscipit quo doloribus eum nobis."
   },
-
 ]
 
-const CardList = () => {
-
-  return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Recent Posts</h1>
-      <div className={styles.posts}>
-        {posts?.map((item) => (
-          <Card item={item} key={item._id} />
-        ))}
-      </div>
-      {/* <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext} /> */}
-      <Pagination />
-    </div>
-  )
-}
-
-export default CardList
+const users = [
+  {
+    id: 1,
+    firstName: "Sam",
+    lastName: "Otter",
+    email: "sam@otter.com",
+    img: "/ottertux.webp",
+  },
+  {
+    id: 2,
+    firstName: "Steph",
+    lastName: "Otter",
+    email: "steph@otter.com",
+    img: "/fashion.png",
+  },
+]
