@@ -64,6 +64,12 @@ const WritePost = () => {
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
 
+  function handleSelect(){
+    setSelected(selected => !selected);
+    
+  }
+
+
 
   return (
     <div className={styles.container}>

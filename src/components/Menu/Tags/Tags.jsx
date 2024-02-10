@@ -52,11 +52,11 @@ const data = [
 
 const Tags = () => {
   return (
-    <div className={styles.categoryList}>
+    <div className={styles.tagList}>
       {data?.map((item) => (
         <Link
-          href={`/blog/categoryPosts?cat=${item.slug}`}
-          className={styles.categoryItem}
+          href={`/blog/tagPosts?cat=${item.slug}`}
+          className={styles.tagItem}
           key={item._id}
         >
           {/* {item.img && (

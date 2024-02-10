@@ -1,4 +1,4 @@
-.categoryList {
+.tagList {
   margin-top: 35px;
   margin-bottom: 60px;
   display: flex;
@@ -6,9 +6,9 @@
   gap: 20px;
 }
 
-.categoryItem {
-  padding: 10px 25px;
-  border-radius: 10px;
-  font-size: 14px;
+.tagItem {
+  padding: 10px 10px;
+  border-radius: 20px;
+  font-size: 12px;
   background-color: #89898931;
 }

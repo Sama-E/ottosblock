@@ -13,6 +13,9 @@ const Card = ({ key, item }) => {
         </div>
       )}
       <div className={styles.textContainer}>
+        <Link href={`/blog/singlePost/${item.slug}`}>
+          <h1>{item.title}</h1>
+        </Link>
         <div className={styles.detail}>
           <span className={styles.date}>
             {/* {item.createdAt.substring(0, 10)} -{" "} */}
@@ -20,9 +23,6 @@ const Card = ({ key, item }) => {
           </span>
           <span className={styles.category}>{item.catSlug}</span>
         </div>
-        <Link href={`/blog/singlePost/${item.slug}`}>
-          <h1>{item.title}</h1>
-        </Link>
         
         <p className={styles.desc} dangerouslySetInnerHTML={{ __html: item?.desc.substring(0,400) }}/>
 

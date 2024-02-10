@@ -47,6 +47,19 @@
   border-radius: 20px;
 }
 
+.addTag:active{
+  background-color: #387fe1;
+}
+
+.selectedTag{
+  padding: 8px 10px;
+  border: none;
+  background-color: #387fe1;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
 .editor {
   display: flex;
   gap: 20px;
