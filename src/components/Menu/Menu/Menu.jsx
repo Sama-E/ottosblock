@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./menu.module.css";
 import Link from "next/link";
-import Tags from "../Tags/Tags";
+import MenuTags from "../MenuTags/MenuTags";
 import MenuPosts from "../MenuPosts/MenuPosts";
 
 const Menu = () => {
@@ -18,7 +18,7 @@ const Menu = () => {
       <MenuPosts />
       <h2 className={styles.subtitle}>Discover by tag</h2>
       <h1 className={styles.title}>Tags</h1>
-      <Tags />
+      <MenuTags />
 
     </div>
   )

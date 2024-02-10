@@ -64,9 +64,18 @@ const WritePost = () => {
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
 
-  function handleSelect(){
-    setSelected(selected => !selected);
-    
+  const [tags, setTags] = useState([])
+
+  function addTag(e){
+    if (e.key !== 'Enter') return
+    const value = e.target.value
+    if(!value.trim()) return
+    setTags([...tags, value])
+    e.target.value = ''
+  }
+
+  function removeTag(index){
+    setTags(tags.filter((el, i) => i !== index))
   }
 
 
@@ -126,15 +135,17 @@ const WritePost = () => {
         </div>
 
         <div className={styles.boxTwo}>
-          <form className={styles.formTag}>
-          {data?.map((item) => (
-            <div>
-              <button className={styles.addTag} key={item.id} value={item.slug} onClick={() => setSelected(!selected)}>
-                {item.title}
-              </button>
-            </div>
-          ))}
-          </form>
+          enter some tags ...
+          <div className={styles.tagsInputContainer}>
+
+            { tags.map((tag, index) => (
+              <div className={styles.tagsItem} key={index}>
+                <span className={styles.tagsText}> {tag} </span>
+                <span className={styles.tagsClose} onClick={() => removeTag(index)}> &times; </span>
+              </div>
+            ))}
+            <input className={styles.tagsInput} onKeyDown={addTag} type="text" placeholder="Type something" />
+          </div>
         </div>
       </div>
 

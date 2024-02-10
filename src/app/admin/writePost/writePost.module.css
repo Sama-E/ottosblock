@@ -10,11 +10,12 @@
 }
 
 .boxOne{
-  flex: 1
+  flex: 1;
 }
 
 .boxTwo{
   flex: 2;
+  padding: 10px;
 }
 
 .selectBox{
@@ -30,34 +31,58 @@
   width: max-content;
 }
 
-.formTag{
+.tagsInputContainer {
+  border: 2px solid #1f273a;
+  max-width: 80%;
+  /* width: min(80vw, 150px); */
+  padding: 10px;
   margin-top: 20px;
-  margin-bottom: 60px;
+  border-radius: 2px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 5px;
 }
 
-.addTag{
-  padding: 8px 10px;
-  border: none;
-  background-color: #0a2853;
-  color: white;
-  cursor: pointer;
+.tagsItem {
+  height: 35%;
+  max-width: fit-content;
+  background-color: #4b6487;
   border-radius: 20px;
-}
-
-.addTag:active{
-  background-color: #387fe1;
-}
-
-.selectedTag{
-  padding: 8px 10px;
-  border: none;
-  background-color: #387fe1;
-  color: white;
+  padding: 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  border-radius: 20px;
+  margin: 10px;
+}
+
+.tagsText {
+  color: white;
+  font-size: 12px;
+}
+
+.tagsClose {
+  height: 20px;
+  width: 20px;
+  background-color: #102e57;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: .5em;
+  font-size: 18px;
+}
+
+.tagsInput {
+  flex-grow: 1;
+  padding: 8px 0px;
+  border: none;
+  outline: none;
+  margin: 20px;
+  width: min(70vw, 120px);
 }
 
 .editor {

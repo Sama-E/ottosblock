@@ -1,4 +1,4 @@
-import styles from "./tags.module.css";
+import styles from "./menuTags.module.css";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -50,7 +50,7 @@ const data = [
   },
 ]
 
-const Tags = () => {
+const MenuTags = () => {
   return (
     <div className={styles.tagList}>
       {data?.map((item) => (
@@ -75,4 +75,4 @@ const Tags = () => {
   )
 }
 
-export default Tags;
+export default MenuTags;
