@@ -27,8 +27,8 @@ const Login = () => {
         {/* <form className={styles.form} action={formAction}> */}
         <div>
           <form className={styles.form}>
-            <input type="email" placeholder="email" name="email" />
-            <input type="password" placeholder="password" name="password" />
+            <input type="email" placeholder="Email" name="email" />
+            <input type="password" placeholder="Password" name="password" />
             <div className={styles.formButton}>Login</div>
             {/* {state?.error} */}
             {/* <Link href="/register">
