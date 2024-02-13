@@ -7,7 +7,8 @@ import { useFormState } from "react-dom";
 import Link from "next/link";
 
 const Login = () => {
-  // const { status } = useSession();
+  const { data, status } = useSession();
+  console.log(data, status)
   // const [state, formAction] = useFormState(login, undefined);
 
   // const router = useRouter();
@@ -24,8 +25,8 @@ const Login = () => {
     <div className={styles.container}>
       <div className={styles.wrapper}>
       <h2>Login</h2>
-        {/* <form className={styles.form} action={formAction}> */}
         <div>
+        {/* <form className={styles.form} action={formAction}> */}
           <form className={styles.form}>
             <input type="email" placeholder="Email" name="email" />
             <input type="password" placeholder="Password" name="password" />
@@ -36,8 +37,8 @@ const Login = () => {
             </Link> */}
           </form>
         </div>
-        {/* <div className={styles.socialButton} onClick={() => signIn("google")}> */}
-        <div className={styles.socialButton}>
+        <div className={styles.socialButton} onClick={() => signIn("google")}>
+        {/* <div className={styles.socialButton}> */}
           Sign in with Google
         </div>
       </div>
