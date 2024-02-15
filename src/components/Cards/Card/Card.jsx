@@ -19,7 +19,7 @@ const Card = ({ key, item }) => {
         <div className={styles.detail}>
           <span className={styles.date}>
             {/* {item.createdAt.substring(0, 10)} -{" "} */}
-            {item.createdAt.substring(0, 10)} -{" "}
+            {/* {item.createdAt} */}
           </span>
           <span className={styles.category}>{item.catSlug}</span>
         </div>
