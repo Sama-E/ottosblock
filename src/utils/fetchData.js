@@ -1,3 +1,6 @@
+"use server";
+
+import { signIn } from "./auth";
 import { connectToDb } from "./connect";
 import { Post, User } from "./models";
 import { unstable_noStore as noStore } from "next/cache";
@@ -46,4 +49,12 @@ export const getUsers = async () => {
     console.log(err);
     throw new Error("Failed to fetch users!");
   }
+};
+
+export const handleGithubLogin = async () => {
+  await signIn("github");
+};
+
+export const handleGooglehubLogin = async () => {
+  await signIn("google");
 };

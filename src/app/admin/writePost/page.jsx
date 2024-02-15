@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
 import ReactQuill from 'react-quill';
+import { addPost } from "@/utils/postData";
 
 const data = [
   {
@@ -78,10 +79,36 @@ const WritePost = () => {
     setTags(tags.filter((el, i) => i !== index))
   }
 
+  const handleSubmit = async () => {
+    const res = await fetch("/api/posts", {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        desc: value,
+        // img: media,
+        slug: slugify(title),
+        // catSlug: catSlug || "tech", //If not selected, choose the general category
+      }),
+    });
 
+    if (res.status === 200) {
+      // const data = await res.json();
+      // router.push(`/posts/${data.slug}`);
+      console.log(res)
+    }
+  };
 
   return (
-    <div className={styles.container}>
+    <form className={styles.container} action={handleSubmit()}>
+
+      {/* <form action={addPost}>
+        <input type="text" placeholder="title" name="title"/>
+        <input type="text" placeholder="desc" name="desc"/>
+        <input type="text" placeholder="category" name="catSlug"/>
+        <input type="text" placeholder="userId" name="userId"/>
+        <button>Create</button>
+      </form> */}
+
       <input
         type="text"
         placeholder="Title"
@@ -123,7 +150,7 @@ const WritePost = () => {
           </div>
                 
           <div className={styles.selectBox}>
-            <select className={styles.select} onChange={(e) => setCatSlug(e.target.value)}>
+            <select className={styles.select} name="catSlug" onChange={(e) => setCatSlug(e.target.value)}>
               <option value="style">style</option>
               <option value="fashion">fashion</option>
               <option value="food">food</option>
@@ -149,7 +176,7 @@ const WritePost = () => {
         </div>
       </div>
 
-      <div className={styles.editor}>
+      {/* <div className={styles.editor}>
         <ReactQuill
           className={styles.textArea}
           theme="bubble"
@@ -157,12 +184,12 @@ const WritePost = () => {
           onChange={setValue}
           placeholder="Tell your story..."
         />
-      </div>
+      </div> */}
       {/* <button className={styles.publish} onClick={handleSubmit}> */}
       <button className={styles.publish}>
         Publish
       </button>
-    </div>
+    </form>
   )
 }
 

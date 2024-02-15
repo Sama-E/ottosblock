@@ -4,14 +4,24 @@ import UserDetails from "@/components/UserDetails/UserDetails";
 import { getPost } from "@/utils/fetchData";
 import Image from 'next/image';
 
+//Metadata
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+
 // const SinglePost = () => {
 const SinglePost = async ({ params }) => {
   const { slug } = params;
 //   const data = await getData(slug);
 const post = await getPost(slug)
 const date = post.createdAt.toString().slice(4, 16)
-console.log(typeof(date))
-
 
 
   return (

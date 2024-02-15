@@ -10,7 +10,10 @@ import Navbar from '../components/Nav/Navbar/Navbar'
 const open_sans = Open_Sans({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Ottos Block',
+  title: {
+    default:"Ottos Block",
+    template:"%s"
+  },
   description: 'My blog!',
 }
 
