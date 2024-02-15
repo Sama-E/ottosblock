@@ -1,5 +1,6 @@
 import styles from "./singlePost.module.css";
 import Menu from '@/components/Menu/Menu/Menu';
+import UserDetails from "@/components/UserDetails/UserDetails";
 import { getPost } from "@/utils/fetchData";
 import Image from 'next/image';
 
@@ -8,6 +9,8 @@ const SinglePost = async ({ params }) => {
   const { slug } = params;
 //   const data = await getData(slug);
 const post = await getPost(slug)
+const date = post.createdAt.toString().slice(4, 16)
+console.log(typeof(date))
 
 
 
@@ -24,8 +27,9 @@ const post = await getPost(slug)
         )}
         <div className={styles.textContainer}>
           <h1 className={styles.title}>{post?.title}</h1>
-          <div className={styles.user}>
-            {/* {post?.user?.image && ( */}
+          <UserDetails user={post.userId} date={date} />
+          {/* <div className={styles.user}>
+            {post?.user?.image && (
               <div className={styles.userImageContainer}>
                 <Image 
                   // src={post.user.image}
@@ -34,14 +38,14 @@ const post = await getPost(slug)
                   fill
                   className={styles.avatar} />
               </div>
-            {/* )} */}
+            )}
             <div className={styles.userTextContainer}>
-              {/* <span className={styles.username}>{post?.user.name}</span>
-              <span className={styles.date}>{post.createdAt.substring(0, 10)}</span> */}
+              <span className={styles.username}>{post?.user.firstName}{post?.user.lastName}</span>
               <span className={styles.username}>John Doe</span>
-              {/* <span className={styles.date}>{post.createdAt}</span> */}
-            </div>
-          </div>
+              </div>
+            </div> */}
+            {/* <span className={styles.date}>{post.createdAt}.toString().slice(4, 16)</span> */}
+            {/* <span className={styles.date}>{post.createdAt}</span> */}
         </div>
           {/* <div
             className={styles.description}
