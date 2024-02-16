@@ -14,11 +14,11 @@ const AuthLinks = ({session}) => {
     <>
       {session?.user ? (
         <>
-        {/* {session.user?isAdmin && */}
+        {session.user?isAdmin &&
           <Link href="/write" className={styles.link}>
             Write
           </Link>
-        {/* : "" } */}
+        : "" }
           <span className={styles.link} onClick={handleLogout}>
             Logout
           </span>
@@ -39,11 +39,11 @@ const AuthLinks = ({session}) => {
           <Link href="/">Contact</Link>
           {session?.user ? (         
               <>
-                {/* {session.user?isAdmin && */}
+                {session.user?isAdmin &&
                 <Link href="/admin/writePost">
                   Write
                 </Link>
-                {/* : "" } */}
+                : "" }
                 <span className={styles.link}>Logout</span>
               </>
             ) : (

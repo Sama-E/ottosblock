@@ -5,6 +5,7 @@ import NextAuth from "next-auth";
 import { connectToDb } from "./connect";
 import { User } from "./models";
 import bcrypt from 'bcryptjs';
+import { authConfig } from './auth.config';
 
 
   // Social Media + Credential Providers 
@@ -57,7 +58,8 @@ import bcrypt from 'bcryptjs';
           }
         }
         return true;
-      }
+      },
+      ...authConfig.callbacks,
     }
   });
 

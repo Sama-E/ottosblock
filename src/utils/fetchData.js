@@ -65,12 +65,12 @@ export const handleLogout = async () => {
   await signOut();
 };
 
-export const register = async (formData) => {
+export const register = async (previousState, formData) => {
   const { firstName, lastName, email, img, password, passwordConfirm } =
     Object.fromEntries(formData);
 
   if(password !== passwordConfirm) {
-    return "Password does not match."
+    return { error: "Password does not match." }
   }
 
   try {
@@ -95,7 +95,8 @@ export const register = async (formData) => {
     });
 
     await newUser.save();
-    // return { success: true };
+
+    return { success: true };
   } catch (err) {
     console.log(err);
     return { error: "Something went wrong!"}
@@ -103,18 +104,19 @@ export const register = async (formData) => {
 };
 
 //Login
-export const login = async (formData) => {
+export const login = async (prevState, formData) => {
   const { email, password } = Object.fromEntries(formData);
 
   try {
     await signIn("credentials", { email, password });
   } catch (err) {
     console.log(err);
+    // return { error: "Invalid email or password"}
 
     
-    // if (err.message.includes("CredentialsSignin")) {
-    //   return { error: "Invalid email or password" };
-    // }
-    // throw err;
+    if (err){
+      return { error: "Invalid email or password" };
+    }
+    throw err;
   }
 };
