@@ -1,9 +1,11 @@
 "use server";
 
-import { signIn } from "./auth";
+import { signIn, signOut } from "./auth";
 import { connectToDb } from "./connect";
+import { revalidatePath } from "next/cache";
 import { Post, User } from "./models";
 import { unstable_noStore as noStore } from "next/cache";
+import bcrypt from "bcryptjs";
 
 
 export const getPosts = async () => {
@@ -57,4 +59,62 @@ export const handleGithubLogin = async () => {
 
 export const handleGooglehubLogin = async () => {
   await signIn("google");
+};
+
+export const handleLogout = async () => {
+  await signOut();
+};
+
+export const register = async (formData) => {
+  const { firstName, lastName, email, img, password, passwordConfirm } =
+    Object.fromEntries(formData);
+
+  if(password !== passwordConfirm) {
+    return "Password does not match."
+  }
+
+  try {
+    connectToDb();
+
+    //Find if user exists
+    const user = await User.findOne({ email });
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    if (user) {
+      return { error: "User already exists" };
+    }
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+      img,
+    });
+
+    await newUser.save();
+    // return { success: true };
+  } catch (err) {
+    console.log(err);
+    return { error: "Something went wrong!"}
+  }
+};
+
+//Login
+export const login = async (formData) => {
+  const { email, password } = Object.fromEntries(formData);
+
+  try {
+    await signIn("credentials", { email, password });
+  } catch (err) {
+    console.log(err);
+
+    
+    // if (err.message.includes("CredentialsSignin")) {
+    //   return { error: "Invalid email or password" };
+    // }
+    // throw err;
+  }
 };

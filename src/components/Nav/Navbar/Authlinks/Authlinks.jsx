@@ -1,29 +1,32 @@
 "use client";
+
 import Link from "next/link";
 import styles from "./authLinks.module.css";
 import { useState } from "react";
-import { signOut, useSession } from "next-auth/react";
+import { handleLogout } from "@/utils/fetchData";
 
-const AuthLinks = () => {
+
+const AuthLinks = ({session}) => {
   const [open, setOpen] = useState(false);
 
-  // const { status } = useSession();
 
   return (
     <>
-      {status === "unauthenticated" ? (
-        <Link href="/login" className={styles.link}>
-          Login
-        </Link>
-      ) : (
+      {session?.user ? (
         <>
+        {/* {session.user?isAdmin && */}
           <Link href="/write" className={styles.link}>
             Write
           </Link>
-          <span className={styles.link} onClick={signOut}>
+        {/* : "" } */}
+          <span className={styles.link} onClick={handleLogout}>
             Logout
           </span>
         </>
+      ) : (
+        <Link href="/login" className={styles.link}>
+          Login
+        </Link>
       )}
       <div className={styles.burger} onClick={() => setOpen(!open)}>
         <div className={styles.line}></div>
@@ -34,13 +37,17 @@ const AuthLinks = () => {
         <div className={styles.responsiveMenu}>
           <Link href="/">About</Link>
           <Link href="/">Contact</Link>
-          {status === "notauthenticated" ? (
-            <Link href="/login">Login</Link>
-          ) : (
-            <>
-              <Link href="/admin/writePost">Write</Link>
-              <span className={styles.link}>Logout</span>
-            </>
+          {session?.user ? (         
+              <>
+                {/* {session.user?isAdmin && */}
+                <Link href="/admin/writePost">
+                  Write
+                </Link>
+                {/* : "" } */}
+                <span className={styles.link}>Logout</span>
+              </>
+            ) : (
+              <Link href="/login">Login</Link>
           )}
         </div>
       )}
