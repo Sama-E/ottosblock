@@ -8,7 +8,6 @@ import { auth } from "@/utils/auth";
 const Navbar = async () => {
 
   const session = await auth();
-  // console.log(session)
 
   return (
     <div className={styles.container}>
@@ -16,8 +15,8 @@ const Navbar = async () => {
 
       <div className={styles.links}>
         <ThemeToggle />
-        <Link href="/" className={styles.link}>Contact</Link>
-        <Link href="/" className={styles.link}>About</Link>
+        {/* <Link href="/" className={styles.link}>Contact</Link>
+        <Link href="/" className={styles.link}>About</Link> */}
         <AuthLinks session = {session} />
       </div>
     </div>

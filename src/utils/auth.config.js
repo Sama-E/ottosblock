@@ -17,10 +17,10 @@ export const authConfig = {
         session.user.id = token.id;
         session.user.isAdmin = token.isAdmin;
       }
-      console.log(session)
       return session;
     },
     authorized({ auth, request }) {
+      console.log(auth)
       const user = auth?.user;
       const isOnAdminPanel = request.nextUrl?.pathname.startsWith("/admin");
       // const isOnBlogPage = request.nextUrl?.pathname.startsWith("/blog");

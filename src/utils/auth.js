@@ -5,7 +5,8 @@ import NextAuth from "next-auth";
 import { connectToDb } from "./connect";
 import { User } from "./models";
 import bcrypt from 'bcryptjs';
-import { authConfig } from './auth.config';
+import { authConfig } from "./auth.config";
+
 
 
   // Social Media + Credential Providers 
@@ -15,6 +16,7 @@ import { authConfig } from './auth.config';
     signIn, 
     signOut 
   } = NextAuth({
+    ...authConfig,
     providers: [
       GoogleProvider({
         clientId: process.env.GOOGLE_ID,
